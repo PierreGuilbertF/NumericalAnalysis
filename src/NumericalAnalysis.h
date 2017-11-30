@@ -19,5 +19,6 @@
 #define NUMERICALANALYSIS_H
 
 #include "NewtonSolver.h"
+#include "GradientDescentSolver.h"
 
 #endif

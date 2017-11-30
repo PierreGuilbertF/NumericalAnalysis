@@ -25,13 +25,18 @@ PURPOSE.  See the above copyright notice for more information.
 // LOCAL
 #include "NumericalAnalysis.h"
 #include "TestNewtonSolver.h"
+#include "TestGradientDescentSolver.h"
 
 
 int main()
 {
   int nbrError = 0;
+  // Test Newton Solver
   nbrError += TestNewtonSolverAnalytical();
   nbrError += TestNewtonSolverApproximated();
+
+  // Test Gradient Descent Solver
+  nbrError += TestGradientDescentAnalytical();
 
   std::cout << "Number of error in this test : " << nbrError << std::endl;
   system("PAUSE");

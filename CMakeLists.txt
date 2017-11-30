@@ -14,6 +14,7 @@ if (MSVC)
     add_executable(${PROJECT_NAME}
                    ${TestNumericalAnalysisSRC}/TestNumericalAnalysis.cxx
                    ${TestNumericalAnalysisSRC}/TestNewtonSolver.cxx
+                   ${TestNumericalAnalysisSRC}/TestGradientDescentSolver.cxx
                    ${TestNumericalAnalysisSRC}/NumericalAnalysis.cxx
                    )
 
