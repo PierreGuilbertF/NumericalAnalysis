@@ -54,6 +54,9 @@ public:
   // Set the delta X to estimate Jacobian
   void SetdX(VectorType argdX);
 
+  // Set verbal / not verbal mode
+  void SetVerbal(bool input);
+
 protected:
   // Starter point to initialize the
   // newton solver algorithm
@@ -86,6 +89,9 @@ protected:
 
   // compute the jacobian
   auto ComputeJacobian(VectorType X);
+
+  // Verbal mode
+  bool Verbal;
 };
 
 //-----------------------------------------------------------
@@ -101,6 +107,7 @@ NewtonSolver<VectorType, Function, Jacobian>::NewtonSolver()
   this->MaxIteration = 25;
   this->Epsilon = 1e-8;
   this->ShouldEstimateJacobian = false;
+  this->Verbal = false;
 }
 
 //-----------------------------------------------------------
@@ -159,6 +166,13 @@ void NewtonSolver<VectorType, Function, Jacobian>::SetMaxIteration(unsigned int 
 
 //-----------------------------------------------------------
 template<typename VectorType, typename Function, typename Jacobian>
+void NewtonSolver<VectorType, Function, Jacobian>::SetVerbal(bool input)
+{
+  this->Verbal = input;
+}
+
+//-----------------------------------------------------------
+template<typename VectorType, typename Function, typename Jacobian>
 void NewtonSolver<VectorType, Function, Jacobian>::Solve()
 {
   // Initialization of the algorithm parameters
@@ -183,10 +197,13 @@ void NewtonSolver<VectorType, Function, Jacobian>::Solve()
     nbrIt++;
   }
 
-  std::cout << "iteration made : " << nbrIt << std::endl;
-  std::cout << "solution : " << this->Xf << std::endl;
-  std::cout << "value : " << Y << std::endl;
-  std::cout << "Norme : " << Y.norm() << std::endl;
+  if (this->Verbal)
+  {
+    std::cout << "iteration made : " << nbrIt << std::endl;
+    std::cout << "solution : " << this->Xf << std::endl;
+    std::cout << "value : " << Y << std::endl;
+    std::cout << "Norme : " << Y.norm() << std::endl;
+  }
 }
 
 //-----------------------------------------------------------

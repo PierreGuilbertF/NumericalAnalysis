@@ -25,6 +25,7 @@ PURPOSE.  See the above copyright notice for more information.
 // LOCAL
 #include "TestNewtonSolver.h";
 
+//-----------------------------------------------------------
 struct F
 {
   Eigen::Matrix<double, 2, 1> operator()(Eigen::Matrix<double, 2, 1> X)
@@ -38,6 +39,7 @@ struct F
   }
 };
 
+//-----------------------------------------------------------
 struct JF
 {
   Eigen::Matrix<double, 2, 2> operator()(Eigen::Matrix<double, 2, 1> X)
@@ -52,6 +54,7 @@ struct JF
   }
 };
 
+//-----------------------------------------------------------
 int TestNewtonSolverAnalytical()
 {
   std::cout << "-----TEST NEWTON SOLVER ANALYTICAL-----" << std::endl;
@@ -62,6 +65,7 @@ int TestNewtonSolverAnalytical()
   Solver.SetX0(Eigen::Matrix<double, 2, 1>(8.49, 3.65));
   Solver.SetMaxIteration(150);
   Solver.SetEpsilon(1e-16);
+  Solver.SetVerbal(true);
   Solver.Solve();
 
   Eigen::Matrix<double, 2, 1> Solution = Solver.GetXf();
@@ -78,6 +82,7 @@ int TestNewtonSolverAnalytical()
   return 0;
 }
 
+//-----------------------------------------------------------
 int TestNewtonSolverApproximated()
 {
   std::cout << "-----TEST NEWTON SOLVER APPROXIMATED-----" << std::endl;
@@ -90,6 +95,7 @@ int TestNewtonSolverApproximated()
   Solver.SetEpsilon(1e-16);
   Solver.SetdX(Eigen::Matrix<double, 2, 1>(1e-3, 1e-3));
   Solver.SetShouldEstimateJacobian(true);
+  Solver.SetVerbal(true);
   Solver.Solve();
 
   Eigen::Matrix<double, 2, 1> Solution = Solver.GetXf();

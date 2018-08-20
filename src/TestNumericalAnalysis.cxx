@@ -27,7 +27,7 @@ PURPOSE.  See the above copyright notice for more information.
 #include "TestNewtonSolver.h"
 #include "TestGradientDescentSolver.h"
 
-
+//-----------------------------------------------------------
 int main()
 {
   int nbrError = 0;

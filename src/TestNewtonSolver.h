@@ -21,8 +21,10 @@ PURPOSE.  See the above copyright notice for more information.
 
 #include "NewtonSolver.h"
 
+//-----------------------------------------------------------
 int TestNewtonSolverAnalytical();
 
+//-----------------------------------------------------------
 int TestNewtonSolverApproximated();
 
 #endif // TEST_NEWTON_SOLVER_H
