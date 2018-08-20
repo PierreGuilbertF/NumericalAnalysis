@@ -21,6 +21,7 @@ PURPOSE.  See the above copyright notice for more information.
 
 #include "GradientDescentSolver.h"
 
+//-----------------------------------------------------------
 int TestGradientDescentAnalytical();
 
 //int TestNewtonSolverApproximated();

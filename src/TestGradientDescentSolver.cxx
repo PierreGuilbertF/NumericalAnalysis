@@ -25,6 +25,7 @@ PURPOSE.  See the above copyright notice for more information.
 // LOCAL
 #include "TestGradientDescentSolver.h"
 
+//-----------------------------------------------------------
 struct F
 {
   double operator()(Eigen::Matrix<double, 3, 1> X)
@@ -34,6 +35,7 @@ struct F
   }
 };
 
+//-----------------------------------------------------------
 struct G
 {
   Eigen::Matrix<double, 3, 1> operator()(Eigen::Matrix<double, 3, 1> X)
@@ -46,11 +48,14 @@ struct G
   }
 };
 
+//-----------------------------------------------------------
 int TestGradientDescentAnalytical()
 {
+  std::cout << "-----TEST GRADIENT DESCENT SOLVER ANALYTICAL-----" << std::endl;
   GradientDescentSolver<Eigen::Matrix<double, 3, 1>, F, G> Solver;
   Solver.SetEpsilon(1e-8);
   Solver.SetMaxIteration(150);
+  Solver.SetVerbal(true);
   Solver.Solve();
   return 0;
 }

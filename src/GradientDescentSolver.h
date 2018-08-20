@@ -23,6 +23,7 @@ PURPOSE.  See the above copyright notice for more information.
 #include <stdlib.h>
 #include <vector>
 
+//-----------------------------------------------------------
 template<typename VectorType, typename Function, typename Gradient>
 class GradientDescentSolver
 {
@@ -44,6 +45,9 @@ public:
 
   // Solve the minimisation problem
   void Solve();
+
+  // Set solver to verbal / not verbal
+  void SetVerbal(bool input);
 protected:
   // Initial point
   VectorType X0;
@@ -63,6 +67,9 @@ protected:
   // Condition to stop the solver algorithm
   unsigned int MaxIteration;
   double Epsilon;
+
+  // Debug info
+  bool Verbal;
 };
 
 //-----------------------------------------------------------
@@ -77,6 +84,7 @@ GradientDescentSolver<VectorType, Function, Gradient>::GradientDescentSolver()
 
   this->MaxIteration = 100;
   this->Epsilon = 1e-8;
+  this->Verbal = false;
 }
 
 //-----------------------------------------------------------
@@ -111,6 +119,13 @@ void GradientDescentSolver<VectorType, Function, Gradient>::SetMaxIteration(unsi
 
 //-----------------------------------------------------------
 template<typename VectorType, typename Function, typename Gradient>
+void GradientDescentSolver<VectorType, Function, Gradient>::SetVerbal(bool input)
+{
+  this->Verbal = input;
+}
+
+//-----------------------------------------------------------
+template<typename VectorType, typename Function, typename Gradient>
 void GradientDescentSolver<VectorType, Function, Gradient>::Solve()
 {
   unsigned int nbrIte = 0;
@@ -129,9 +144,12 @@ void GradientDescentSolver<VectorType, Function, Gradient>::Solve()
     nbrIte++;
   }
 
-  std::cout << "iteration made : " << nbrIte << std::endl;
-  std::cout << "solution : " << this->Xf << std::endl;
-  std::cout << "value : " << this->F(this->Xf) << std::endl;
-  std::cout << "Norme of gradient : " << Gx.norm() << std::endl;
+  if (this->Verbal)
+  {
+    std::cout << "iteration made : " << nbrIte << std::endl;
+    std::cout << "solution : " << this->Xf << std::endl;
+    std::cout << "value : " << this->F(this->Xf) << std::endl;
+    std::cout << "Norme of gradient : " << Gx.norm() << std::endl;
+  }
 }
 #endif // GRADIENT_DESCENT_SOLVER_H
